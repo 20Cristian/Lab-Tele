@@ -3,12 +3,123 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mi primera web</title>
+  <title>Lab Tele | Telecomunicaciones</title>
+  <style>
+    :root { --bg:#0b1220; --card:rgba(255,255,255,.06); --border:rgba(255,255,255,.12); --txt:#e6e8ee; --muted:#a8b0c3; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,Arial,sans-serif;background:var(--bg);color:var(--txt);line-height:1.5}
+    a{color:inherit}
+    .wrap{max-width:1000px;margin:0 auto;padding:28px}
+    .nav{display:flex;gap:14px;align-items:center;justify-content:space-between}
+    .nav a{opacity:.9;text-decoration:none}
+    .nav a:hover{opacity:1;text-decoration:underline}
+    .hero{margin-top:26px;padding:26px;border:1px solid var(--border);border-radius:18px;background:var(--card)}
+    .hero h1{margin:0 0 8px;font-size:34px}
+    .hero p{margin:0 0 18px;color:var(--muted)}
+    .btns{display:flex;flex-wrap:wrap;gap:10px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.08);text-decoration:none;font-weight:600}
+    .btn:hover{background:rgba(255,255,255,.12)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:16px}
+    .card{padding:16px;border:1px solid var(--border);border-radius:18px;background:var(--card)}
+    .card h3{margin:0 0 6px}
+    .card p{margin:0;color:var(--muted)}
+    .section{margin-top:22px}
+    .footer{margin-top:26px;color:var(--muted);font-size:14px}
+    code{background:rgba(255,255,255,.08);padding:2px 6px;border-radius:8px}
+  </style>
 </head>
 <body>
-  <h1> Prueba 1</h1>
-  <p>Esta es mi primera página web.</p>
+  <div class="wrap">
+    <div class="nav">
+      <div><strong>Lab Tele</strong></div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#redes">Redes</a>
+        <a href="#ciber">Ciberseguridad</a>
+        <a href="#lab">Laboratorio</a>
+        <a href="#recursos">Recursos</a>
+      </div>
+    </div>
 
-  <a href="https://www.google.com" target="_blank">Ir a Google</a>
+    <div class="hero">
+      <h1>Telecomunicaciones, redes y ciberseguridad</h1>
+      <p>Notas, laboratorios y recursos para aprender (y promocionar) Ingeniería en Telecomunicaciones.</p>
+      <div class="btns">
+        <a class="btn" href="#recursos">Ver recursos</a>
+        <a class="btn" href="https://github.com/20cristian/Lab-Tele" target="_blank" rel="noreferrer">Repo en GitHub</a>
+      </div>
+    </div>
+
+    <div class="section" id="redes">
+      <h2>📡 Redes</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Fundamentos</h3>
+          <p>OSI/TCP-IP, switching, routing, VLANs, NAT, DNS y troubleshooting.</p>
+        </div>
+        <div class="card">
+          <h3>WAN & Telecom</h3>
+          <p>Fibra óptica, microondas, 4G/5G, MPLS, VPN (DMVPN) y QoS.</p>
+        </div>
+        <div class="card">
+          <h3>Buenas prácticas</h3>
+          <p>Documentación, IP plan, monitoreo (SNMP/NMS) y hardening de equipos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="ciber">
+      <h2>🛡️ Ciberseguridad</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Conceptos clave</h3>
+          <p>Confidencialidad, integridad, disponibilidad, riesgo y modelos de amenaza.</p>
+        </div>
+        <div class="card">
+          <h3>Telecom segura</h3>
+          <p>VPN/IPSec, segmentación, AAA, logs, SIEM básico y Zero Trust (idea general).</p>
+        </div>
+        <div class="card">
+          <h3>Laboratorios</h3>
+          <p>Escaneos controlados, hardening, análisis de logs y prácticas en entornos aislados.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="lab">
+      <h2>🧪 Laboratorio</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>EVE-NG / GNS3</h3>
+          <p>Topologías, prácticas de routing/switching y simulación WAN.</p>
+        </div>
+        <div class="card">
+          <h3>Linux</h3>
+          <p>Comandos esenciales, servicios, firewall, SSH y automatización simple.</p>
+        </div>
+        <div class="card">
+          <h3>Equipos</h3>
+          <p>Cisco / FortiGate / Mikrotik: conceptos + guías paso a paso (cuando toque).</p>
+        </div>
+      </div>
+      <p style="color:var(--muted);margin-top:10px">
+        Tip: Todo lo que pongás aquí lo podés versionar en GitHub y actualizarlo con commits.
+      </p>
+    </div>
+
+    <div class="section" id="recursos">
+      <h2>📚 Recursos</h2>
+      <div class="card">
+        <p>Podés ir agregando links a apuntes, PDFs, labs y comandos. Ejemplo:</p>
+        <ul>
+          <li>Repositorio: <code>https://github.com/20cristian/Lab-Tele</code></li>
+          <li>Página: <code>https://20cristian.github.io/Lab-Tele/</code></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      Hecho con GitHub Pages • Actualizado con commits • © Lab Tele
+    </div>
+  </div>
 </body>
 </html>
