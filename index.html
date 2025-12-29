@@ -3,122 +3,316 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lab Tele | Telecomunicaciones</title>
+  <title>Lab Tele | Telecomunicaciones en Guatemala</title>
+  <meta name="description" content="Guía y recursos para estudiantes interesados en Telecomunicaciones, redes y ciberseguridad. Universidad Galileo, Guatemala." />
   <style>
-    :root { --bg:#0b1220; --card:rgba(255,255,255,.06); --border:rgba(255,255,255,.12); --txt:#e6e8ee; --muted:#a8b0c3; }
+    :root{
+      --bg:#070b16;
+      --panel: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.12);
+      --text:#e9ecf6;
+      --muted:#aab3c7;
+      --accent:#8b5cf6;
+      --accent2:#22d3ee;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,Arial,sans-serif;background:var(--bg);color:var(--txt);line-height:1.5}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: radial-gradient(900px 500px at 10% 10%, rgba(139,92,246,.35), transparent 55%),
+                  radial-gradient(900px 500px at 90% 15%, rgba(34,211,238,.30), transparent 55%),
+                  radial-gradient(700px 450px at 50% 100%, rgba(34,211,238,.12), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height:1.55;
+    }
     a{color:inherit}
-    .wrap{max-width:1000px;margin:0 auto;padding:28px}
-    .nav{display:flex;gap:14px;align-items:center;justify-content:space-between}
-    .nav a{opacity:.9;text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:26px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      position:sticky;top:0;backdrop-filter: blur(10px);
+      background: rgba(7,11,22,.55);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      padding:14px 26px;
+      z-index:10;
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .dot{
+      width:11px;height:11px;border-radius:50%;
+      background: linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow: 0 0 0 6px rgba(139,92,246,.12);
+    }
+    .nav{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+    .nav a{opacity:.9;text-decoration:none;font-weight:600;font-size:14px}
     .nav a:hover{opacity:1;text-decoration:underline}
-    .hero{margin-top:26px;padding:26px;border:1px solid var(--border);border-radius:18px;background:var(--card)}
-    .hero h1{margin:0 0 8px;font-size:34px}
-    .hero p{margin:0 0 18px;color:var(--muted)}
-    .btns{display:flex;flex-wrap:wrap;gap:10px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.08);text-decoration:none;font-weight:600}
-    .btn:hover{background:rgba(255,255,255,.12)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:16px}
-    .card{padding:16px;border:1px solid var(--border);border-radius:18px;background:var(--card)}
-    .card h3{margin:0 0 6px}
-    .card p{margin:0;color:var(--muted)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:11px 14px;border-radius:14px;border:1px solid var(--border);
+      background: rgba(255,255,255,.07);
+      text-decoration:none;font-weight:800;
+      box-shadow: none;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .btn:hover{background: rgba(255,255,255,.10); transform: translateY(-1px)}
+    .btn.primary{
+      border: 1px solid rgba(139,92,246,.55);
+      background: linear-gradient(135deg, rgba(139,92,246,.45), rgba(34,211,238,.18));
+      box-shadow: var(--shadow);
+    }
+    .grid{display:grid;gap:14px}
+    .hero{
+      margin-top:18px;
+      padding:26px;
+      border-radius: calc(var(--radius) + 6px);
+      border:1px solid rgba(255,255,255,.14);
+      background:
+        radial-gradient(600px 260px at 15% 10%, rgba(139,92,246,.35), transparent 60%),
+        radial-gradient(600px 260px at 80% 20%, rgba(34,211,238,.22), transparent 60%),
+        rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+    }
+    .heroGrid{display:grid;grid-template-columns: 1.15fr .85fr; gap:16px; align-items:stretch}
+    @media (max-width: 900px){ .heroGrid{grid-template-columns:1fr} .topbar{position:static} }
+    h1{margin:0 0 10px;font-size:40px;line-height:1.1}
+    .lead{margin:0 0 18px;color:var(--muted);font-size:16px}
+    .pillRow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}
+    .pill{
+      padding:8px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      font-weight:700;font-size:13px;color:rgba(233,236,246,.92)
+    }
+    .card{
+      padding:16px;border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: var(--panel);
+      box-shadow: none;
+    }
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    @media (max-width: 520px){ .stats{grid-template-columns:1fr} h1{font-size:34px} }
+    .stat{padding:14px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.05)}
+    .stat b{display:block;font-size:18px}
+    .stat span{color:var(--muted);font-size:13px}
     .section{margin-top:22px}
-    .footer{margin-top:26px;color:var(--muted);font-size:14px}
+    .section h2{margin:0 0 10px;font-size:22px}
+    .two{display:grid;grid-template-columns: 1fr 1fr; gap:14px}
+    @media (max-width: 900px){ .two{grid-template-columns:1fr} }
+    .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width: 900px){ .cards3{grid-template-columns:1fr} }
+    .kicker{font-weight:900; letter-spacing:.12em; text-transform:uppercase; font-size:12px; color: rgba(170,179,199,.95)}
+    ul{margin:10px 0 0; padding-left:18px}
+    li{margin:6px 0;color:var(--muted)}
+    .tag{
+      display:inline-block;margin-top:10px;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(34,211,238,.25);
+      background: rgba(34,211,238,.08);
+      color: rgba(233,236,246,.95);
+      font-weight:800;font-size:12px;
+    }
+    .cta{
+      margin-top:22px;
+      padding:18px;border-radius: calc(var(--radius) + 6px);
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(34,211,238,.12));
+      box-shadow: var(--shadow);
+      display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+    }
+    .cta p{margin:0;color:var(--muted)}
+    .faq details{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      border-radius: 16px;
+      padding:12px 14px;
+    }
+    .faq details+details{margin-top:10px}
+    .faq summary{cursor:pointer;font-weight:900}
+    .footer{margin:22px 0 10px;color:var(--muted);font-size:13px}
+    .small{font-size:12px;color:rgba(170,179,199,.9)}
     code{background:rgba(255,255,255,.08);padding:2px 6px;border-radius:8px}
   </style>
 </head>
+
 <body>
-  <div class="wrap">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span> Lab Tele</div>
     <div class="nav">
-      <div><strong>Lab Tele</strong></div>
-      <div style="display:flex;gap:14px;flex-wrap:wrap">
-        <a href="#redes">Redes</a>
-        <a href="#ciber">Ciberseguridad</a>
-        <a href="#lab">Laboratorio</a>
-        <a href="#recursos">Recursos</a>
-      </div>
+      <a href="#por-que">¿Por qué Telecom?</a>
+      <a href="#rutas">Rutas</a>
+      <a href="#salidas">Salidas</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn primary" href="#cta">Quiero info</a>
     </div>
+  </div>
 
-    <div class="hero">
-      <h1>Telecomunicaciones, redes y ciberseguridad</h1>
-      <p>Notas, laboratorios y recursos para aprender (y promocionar) Ingeniería en Telecomunicaciones.</p>
-      <div class="btns">
-        <a class="btn" href="#recursos">Ver recursos</a>
-        <a class="btn" href="https://github.com/20cristian/Lab-Tele" target="_blank" rel="noreferrer">Repo en GitHub</a>
-      </div>
-    </div>
+  <div class="wrap">
+    <section class="hero">
+      <div class="heroGrid">
+        <div>
+          <div class="kicker">Guatemala • Telecomunicaciones</div>
+          <h1>Estudiá Telecom y construí el futuro: redes, 5G, fibra y ciberseguridad.</h1>
+          <p class="lead">
+            Este sitio es una guía rápida con recursos y “qué vas a aprender” si te interesa la carrera.
+            Ideal si te gusta la tecnología, resolver problemas y trabajar con infraestructura real.
+          </p>
 
-    <div class="section" id="redes">
-      <h2>📡 Redes</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Fundamentos</h3>
-          <p>OSI/TCP-IP, switching, routing, VLANs, NAT, DNS y troubleshooting.</p>
-        </div>
-        <div class="card">
-          <h3>WAN & Telecom</h3>
-          <p>Fibra óptica, microondas, 4G/5G, MPLS, VPN (DMVPN) y QoS.</p>
-        </div>
-        <div class="card">
-          <h3>Buenas prácticas</h3>
-          <p>Documentación, IP plan, monitoreo (SNMP/NMS) y hardening de equipos.</p>
-        </div>
-      </div>
-    </div>
+          <div class="pillRow">
+            <span class="pill">📡 Redes & Routing</span>
+            <span class="pill">🧵 Fibra óptica</span>
+            <span class="pill">📶 4G/5G & RF</span>
+            <span class="pill">🛡️ Seguridad</span>
+            <span class="pill">🧪 Labs</span>
+          </div>
 
-    <div class="section" id="ciber">
-      <h2>🛡️ Ciberseguridad</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Conceptos clave</h3>
-          <p>Confidencialidad, integridad, disponibilidad, riesgo y modelos de amenaza.</p>
-        </div>
-        <div class="card">
-          <h3>Telecom segura</h3>
-          <p>VPN/IPSec, segmentación, AAA, logs, SIEM básico y Zero Trust (idea general).</p>
-        </div>
-        <div class="card">
-          <h3>Laboratorios</h3>
-          <p>Escaneos controlados, hardening, análisis de logs y prácticas en entornos aislados.</p>
-        </div>
-      </div>
-    </div>
+          <div class="pillRow" style="margin-top:14px">
+            <a class="btn primary" id="cta" href="#contacto">Solicitar información</a>
+            <a class="btn" href="https://20cristian.github.io/Lab-Tele/" target="_blank" rel="noreferrer">Ver sitio en vivo</a>
+            <a class="btn" href="https://github.com/20cristian/Lab-Tele" target="_blank" rel="noreferrer">Ver repo</a>
+          </div>
 
-    <div class="section" id="lab">
-      <h2>🧪 Laboratorio</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>EVE-NG / GNS3</h3>
-          <p>Topologías, prácticas de routing/switching y simulación WAN.</p>
+          <div class="stats">
+            <div class="stat"><b>Aprendés haciendo</b><span>Laboratorios + casos reales</span></div>
+            <div class="stat"><b>Perfil demandado</b><span>Redes, ISP, empresas, seguridad</span></div>
+            <div class="stat"><b>Base sólida</b><span>Para certs y especialización</span></div>
+          </div>
         </div>
-        <div class="card">
-          <h3>Linux</h3>
-          <p>Comandos esenciales, servicios, firewall, SSH y automatización simple.</p>
-        </div>
-        <div class="card">
-          <h3>Equipos</h3>
-          <p>Cisco / FortiGate / Mikrotik: conceptos + guías paso a paso (cuando toque).</p>
-        </div>
-      </div>
-      <p style="color:var(--muted);margin-top:10px">
-        Tip: Todo lo que pongás aquí lo podés versionar en GitHub y actualizarlo con commits.
-      </p>
-    </div>
 
-    <div class="section" id="recursos">
-      <h2>📚 Recursos</h2>
-      <div class="card">
-        <p>Podés ir agregando links a apuntes, PDFs, labs y comandos. Ejemplo:</p>
-        <ul>
-          <li>Repositorio: <code>https://github.com/20cristian/Lab-Tele</code></li>
-          <li>Página: <code>https://20cristian.github.io/Lab-Tele/</code></li>
-        </ul>
+        <div class="card">
+          <h3 style="margin:0 0 8px">🚀 Mini ruta (si estás empezando)</h3>
+          <ol style="margin:0; padding-left:18px; color:var(--muted)">
+            <li>Conceptos de redes (OSI/TCP-IP)</li>
+            <li>Switching & VLANs</li>
+            <li>Routing (OSPF/BGP básico)</li>
+            <li>Fibra, microondas, RF</li>
+            <li>VPN/IPSec + seguridad</li>
+          </ol>
+          <span class="tag">Tip: empezá con 30 min diarios</span>
+
+          <div style="margin-top:14px" class="small">
+            Tu página está publicada en <code>GitHub Pages</code> con HTTPS.
+            Actualizás con commits y se refleja en minutos.
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <section class="section" id="por-que">
+      <h2>¿Por qué estudiar Telecomunicaciones?</h2>
+      <div class="cards3">
+        <div class="card">
+          <h3 style="margin:0 0 6px">Impacto real</h3>
+          <p class="small">Internet, telefonía, 5G, fibra y conectividad empresarial: todo depende de Telecom.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px">Mezcla perfecta</h3>
+          <p class="small">Hardware + software + redes + seguridad. No te aburrís: siempre hay algo nuevo.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px">Escala y carrera</h3>
+          <p class="small">Podés crecer hacia arquitectura de redes, ciberseguridad, cloud networking o ISP.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="rutas">
+      <h2>Rutas que podés seguir en Telecom</h2>
+      <div class="two">
+        <div class="card">
+          <h3 style="margin:0 0 6px">📡 Redes & Infraestructura</h3>
+          <ul>
+            <li>Switching (VLAN, STP), routing (OSPF/BGP), QoS</li>
+            <li>WAN (MPLS/VPN), monitoreo (SNMP/NMS)</li>
+            <li>Diseño y documentación de redes</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px">📶 RF, Microondas y 5G</h3>
+          <ul>
+            <li>Fundamentos de radiofrecuencia y propagación</li>
+            <li>Enlaces microondas, antenas, mediciones</li>
+            <li>Conceptos de redes móviles (4G/5G)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px">🧵 Fibra óptica</h3>
+          <ul>
+            <li>FTTx, ODN, presupuesto óptico</li>
+            <li>Empalme, conectores, pruebas (conceptual)</li>
+            <li>Diseño de rutas y resiliencia</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px">🛡️ Ciberseguridad en redes</h3>
+          <ul>
+            <li>Hardening, segmentación, VPN/IPSec</li>
+            <li>Logs, monitoreo, respuesta a incidentes (básico)</li>
+            <li>Buenas prácticas para entornos empresariales</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="salidas">
+      <h2>Salida laboral típica</h2>
+      <div class="cards3">
+        <div class="card">
+          <h3 style="margin:0 0 6px">Network / NOC</h3>
+          <p class="small">Operación, monitoreo, troubleshooting, cambios controlados.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px">Ingeniería ISP / Enterprise</h3>
+          <p class="small">Diseño WAN, enlaces, proyectos, implementación y optimización.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px">Seguridad de redes</h3>
+          <p class="small">Firewall, VPN, segmentación, hardening, SOC/NOC híbrido.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <h2>FAQ rápido</h2>
+
+      <details>
+        <summary>¿Necesito saber programar para entrar?</summary>
+        <div class="small" style="margin-top:8px;color:var(--muted)">
+          Ayuda, pero no es obligatorio. Lo importante es tener lógica, disciplina y ganas de aprender.
+        </div>
+      </details>
+
+      <details>
+        <summary>¿Puedo hacer labs en mi compu?</summary>
+        <div class="small" style="margin-top:8px;color:var(--muted)">
+          Sí: GNS3/EVE-NG, máquinas virtuales, Linux y herramientas de redes te dejan practicar desde casa.
+        </div>
+      </details>
+
+      <details>
+        <summary>¿Este sitio ya está público y con HTTPS?</summary>
+        <div class="small" style="margin-top:8px;color:var(--muted)">
+          Sí. GitHub Pages publica tu web para cualquiera y con <code>https</code> automático (certificado incluido).
+        </div>
+      </details>
+    </section>
+
+    <section class="cta" id="contacto">
+      <div>
+        <h2 style="margin:0 0 6px">¿Te interesa estudiar Telecom en Guatemala?</h2>
+        <p>Escribime y te paso ruta de estudio + recursos + cómo prepararte para el primer semestre.</p>
+        <div class="small">Tip: cambiá el link del botón por el formulario/WhatsApp/Admisiones cuando lo tengás.</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <!-- Cambiá estos links por los reales -->
+        <a class="btn primary" href="#" onclick="alert('Aquí ponés el link real de Admisiones/Formulario/WhatsApp'); return false;">Contactar / Admisiones</a>
+        <a class="btn" href="mailto:tu-correo@ejemplo.com">Correo</a>
+      </div>
+    </section>
 
     <div class="footer">
-      Hecho con GitHub Pages • Actualizado con commits • © Lab Tele
+      <div>Hecho con GitHub Pages • Lab Tele</div>
+      <div class="small">Nota: Este sitio es informativo. “Universidad Galileo” se menciona solo como referencia (no uso de logos oficiales).</div>
     </div>
   </div>
 </body>
