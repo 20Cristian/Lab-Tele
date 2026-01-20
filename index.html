@@ -1,319 +1,830 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lab Tele | Telecomunicaciones en Guatemala</title>
-  <meta name="description" content="Guía y recursos para estudiantes interesados en Telecomunicaciones, redes y ciberseguridad. Universidad Galileo, Guatemala." />
-  <style>
-    :root{
-      --bg:#070b16;
-      --panel: rgba(255,255,255,.06);
-      --border: rgba(255,255,255,.12);
-      --text:#e9ecf6;
-      --muted:#aab3c7;
-      --accent:#8b5cf6;
-      --accent2:#22d3ee;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background: radial-gradient(900px 500px at 10% 10%, rgba(139,92,246,.35), transparent 55%),
-                  radial-gradient(900px 500px at 90% 15%, rgba(34,211,238,.30), transparent 55%),
-                  radial-gradient(700px 450px at 50% 100%, rgba(34,211,238,.12), transparent 60%),
-                  var(--bg);
-      color: var(--text);
-      line-height:1.55;
-    }
-    a{color:inherit}
-    .wrap{max-width:1100px;margin:0 auto;padding:26px}
-    .topbar{
-      display:flex;align-items:center;justify-content:space-between;gap:14px;
-      position:sticky;top:0;backdrop-filter: blur(10px);
-      background: rgba(7,11,22,.55);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      padding:14px 26px;
-      z-index:10;
-    }
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
-    .dot{
-      width:11px;height:11px;border-radius:50%;
-      background: linear-gradient(135deg,var(--accent),var(--accent2));
-      box-shadow: 0 0 0 6px rgba(139,92,246,.12);
-    }
-    .nav{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
-    .nav a{opacity:.9;text-decoration:none;font-weight:600;font-size:14px}
-    .nav a:hover{opacity:1;text-decoration:underline}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      padding:11px 14px;border-radius:14px;border:1px solid var(--border);
-      background: rgba(255,255,255,.07);
-      text-decoration:none;font-weight:800;
-      box-shadow: none;
-      transition: transform .15s ease, background .15s ease;
-    }
-    .btn:hover{background: rgba(255,255,255,.10); transform: translateY(-1px)}
-    .btn.primary{
-      border: 1px solid rgba(139,92,246,.55);
-      background: linear-gradient(135deg, rgba(139,92,246,.45), rgba(34,211,238,.18));
-      box-shadow: var(--shadow);
-    }
-    .grid{display:grid;gap:14px}
-    .hero{
-      margin-top:18px;
-      padding:26px;
-      border-radius: calc(var(--radius) + 6px);
-      border:1px solid rgba(255,255,255,.14);
-      background:
-        radial-gradient(600px 260px at 15% 10%, rgba(139,92,246,.35), transparent 60%),
-        radial-gradient(600px 260px at 80% 20%, rgba(34,211,238,.22), transparent 60%),
-        rgba(255,255,255,.05);
-      box-shadow: var(--shadow);
-    }
-    .heroGrid{display:grid;grid-template-columns: 1.15fr .85fr; gap:16px; align-items:stretch}
-    @media (max-width: 900px){ .heroGrid{grid-template-columns:1fr} .topbar{position:static} }
-    h1{margin:0 0 10px;font-size:40px;line-height:1.1}
-    .lead{margin:0 0 18px;color:var(--muted);font-size:16px}
-    .pillRow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}
-    .pill{
-      padding:8px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      font-weight:700;font-size:13px;color:rgba(233,236,246,.92)
-    }
-    .card{
-      padding:16px;border-radius: var(--radius);
-      border:1px solid var(--border);
-      background: var(--panel);
-      box-shadow: none;
-    }
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-    @media (max-width: 520px){ .stats{grid-template-columns:1fr} h1{font-size:34px} }
-    .stat{padding:14px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background: rgba(255,255,255,.05)}
-    .stat b{display:block;font-size:18px}
-    .stat span{color:var(--muted);font-size:13px}
-    .section{margin-top:22px}
-    .section h2{margin:0 0 10px;font-size:22px}
-    .two{display:grid;grid-template-columns: 1fr 1fr; gap:14px}
-    @media (max-width: 900px){ .two{grid-template-columns:1fr} }
-    .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    @media (max-width: 900px){ .cards3{grid-template-columns:1fr} }
-    .kicker{font-weight:900; letter-spacing:.12em; text-transform:uppercase; font-size:12px; color: rgba(170,179,199,.95)}
-    ul{margin:10px 0 0; padding-left:18px}
-    li{margin:6px 0;color:var(--muted)}
-    .tag{
-      display:inline-block;margin-top:10px;
-      padding:6px 10px;border-radius:999px;
-      border:1px solid rgba(34,211,238,.25);
-      background: rgba(34,211,238,.08);
-      color: rgba(233,236,246,.95);
-      font-weight:800;font-size:12px;
-    }
-    .cta{
-      margin-top:22px;
-      padding:18px;border-radius: calc(var(--radius) + 6px);
-      border:1px solid rgba(255,255,255,.14);
-      background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(34,211,238,.12));
-      box-shadow: var(--shadow);
-      display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;
-    }
-    .cta p{margin:0;color:var(--muted)}
-    .faq details{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      border-radius: 16px;
-      padding:12px 14px;
-    }
-    .faq details+details{margin-top:10px}
-    .faq summary{cursor:pointer;font-weight:900}
-    .footer{margin:22px 0 10px;color:var(--muted);font-size:13px}
-    .small{font-size:12px;color:rgba(170,179,199,.9)}
-    code{background:rgba(255,255,255,.08);padding:2px 6px;border-radius:8px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telecomunicaciones | Universidad Galileo</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- COLORES --- */
+        :root {
+            --galileo-blue: #0033A0;
+            --galileo-light: #00A9E0;
+            --bg-gray: #f4f6f9;
+            --text-main: #333;
+        }
+
+        /* justificacion */
+        p {
+            text-align: justify;
+            text-justify: inter-word; 
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-main);
+            background-color: white;
+            overflow-x: hidden;
+            padding-top: 80px; /* Espacio para el navbar fijo */
+        }
+
+        h1, h2, h3, h4, h5, .nav-link, .btn {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* NAVBAR */
+        .navbar-tesla {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            height: 80px;
+        }
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--galileo-blue);
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+        }
+        .nav-link {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #555 !important;
+            margin: 0 15px;
+            cursor: pointer;
+            position: relative;
+            transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--galileo-blue) !important;
+        }
+
+        /* Línea azul debajo del link activo */
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--galileo-blue);
+        }
+
+        /* SECCIONES GENERALES */
+        .page-section {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            color: var(--galileo-blue);
+            font-weight: 800;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 5px;
+            background: var(--galileo-light);
+            margin-top: 10px;
+        }
+
+        /* --- VISTA 1: LA CARRERA --- */
+        .hero-degree {
+            background: linear-gradient(135deg, rgba(0,51,160,0.9), rgba(0,169,224,0.8)), 
+                        url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .branch-card {
+            background: white;
+            border: 1px solid #eee;
+            padding: 30px;
+            border-radius: 12px;
+            transition: 0.3s;
+            height: 100%;
+            text-align: left;
+        }
+        .branch-card:hover {
+            border-color: var(--galileo-light);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+        .branch-icon {
+            font-size: 2.5rem;
+            color: var(--galileo-blue);
+            margin-bottom: 20px;
+        }
+
+        /* Future Jobs List (Estilo limpio) */
+        .job-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--galileo-blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+
+        /* --- VISTA 2: TELECOM LAB --- */
+        .hero-lab {
+            background: #111; /* Fondo oscuro para el Lab para diferenciarlo */
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            background-image: radial-gradient(#222 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .media-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .media-card:hover { transform: scale(1.02); }
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 177%; /* Aspect ratio 9:16 para TikTok/Shorts */
+            background: #000;
+        }
+        .iframe-container.youtube {
+            padding-bottom: 56.25%; /* Aspect ratio 16:9 para YouTube normal */
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+
+        .project-badge {
+            background-color: var(--galileo-light);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Estilos Base para los Íconos */
+        .social-icon {
+            color: #ffffff !important; /* Blanco puro para que se vea en el fondo negro */
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* Efecto al pasar el mouse (Hover) */
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1); /* Se levanta y crece un poco */
+        }
+
+        /* Colores específicos de marca al hacer hover */
+        .social-icon.tiktok:hover {
+            color: #00f2ea !important; /* El Cian neón de TikTok */
+            text-shadow: 2px 2px 0px #ff0050; /* Sombra roja tipo glitch de TikTok */
+        }
+
+        .social-icon.instagram:hover {
+            color: #E1306C !important; /* Rosa Instagram */
+        }
+
+        .social-icon.youtube:hover {
+            color: #FF0000 !important; /* Rojo YouTube */
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: #aaa;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        /* Animación para que las tarjetas floten */
+        .hover-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-10px); /* Se mueve 10px para arriba */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important; /* Sombra más profunda */
+            cursor: default;
+        }
+
+        /* Efecto para las tarjetas de trabajo */
+        .job-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-10px); /* Se levanta un poco */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important; /* Sombra más fuerte */
+            cursor: default;
+        }
+    </style>
+
 </head>
-
 <body>
-  <div class="topbar">
-    <div class="brand"><span class="dot"></span> Lab Tele</div>
-    <div class="nav">
-      <a href="#por-que">¿Por qué Telecom?</a>
-      <a href="#rutas">Rutas</a>
-      <a href="#salidas">Salidas</a>
-      <a href="#faq">FAQ</a>
-      <a class="btn primary" href="#cta">Quiero info</a>
+
+    <nav class="navbar navbar-expand-lg navbar-tesla fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="switchTab('carrera')">
+                <span>TELECOM LAB - UNIVERSIDAD GALILEO</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navMain">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="btn-carrera" onclick="switchTab('carrera')">¿Qué es?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="btn-lab" onclick="switchTab('lab')">Telecom Lab</a>
+                    </li>
+                    <li class="nav-item ms-lg-4">
+                        <a class="btn btn-primary rounded-pill px-4 fw-bold" 
+                        style="background-color: var(--galileo-blue); border:none;" 
+                        href="https://www.galileo.edu/fisicc/carrera/ingenieria-telecomunicaciones-redes/" 
+                        target="_blank">
+                        Solicitar Info
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="view-carrera" class="page-section">
+        
+        <header class="hero-degree">
+            <div class="container">
+                <h1 class="display-3 fw-bold">INGENIERIA EN TELECOMUNCACIONES</h1>
+                <p class="text-center lead mb-4">Es la ingeniería que hace posible la vida moderna. Desde la fibra óptica submarina que conecta continentes, hasta los satélites y la red 5G que usas en tu celular.
+</p>
+                <a href="#info" class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold">Descubre Más</a>
+            </div>
+        </header>
+
+        <section id="info" class="py-5 container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">¿Qué es Telecomunicaciones?</h2>
+
+                    <div class="mt-4">
+                        <p>
+                            Ingeniería en Telecomunicaciones es la carrera que diseña y sostiene la conectividad del mundo moderno. Aquí no solo aprendés cómo funciona el internet: aprendés a construirlo, protegerlo y hacerlo escalar. Desde redes empresariales y fibra óptica, hasta 5G, ciberseguridad y servicios en la nube, esta ingeniería combina tecnología, lógica y física para crear la infraestructura que permite que personas, empresas y países se comuniquen sin límites.
+                        </p>
+
+                        <p class="mt-4 text-muted">
+                            En Universidad Galileo, la teoría se convierte en práctica para formarte como el ingeniero que mantiene al mundo conectado.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded-4 shadow" alt="Tech">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 bg-gray">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">Áreas de Especialización</h2>
+                </div>
+                
+                <div class="row g-4 justify-content-center">
+                    
+                    <div class="col-md-6 col-lg-4">
+                        <div class="branch-card h-100">
+                            <i class="fa-solid fa-server branch-icon"></i>
+                            <h4 class="fw-bold">Redes & Infraestructura</h4>
+                            <p class="small text-muted">
+                                Sé el arquitecto de la conectividad. Aprende a configurar el "cerebro" de internet usando Routing avanzado (OSPF/BGP), Switching y monitoreo de redes empresariales en tiempo real.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="branch-card h-100">
+                            <i class="fa-solid fa-bezier-curve branch-icon"></i>
+                            <h4 class="fw-bold">Fibra Óptica</h4>
+                            <p class="small text-muted">
+                                Domina la velocidad de la luz. Diseña redes mono-modo y multi-modo, aprende a certifica el cableado que conecta continentes enteros bajo el mar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="branch-card h-100">
+                            <i class="fa-solid fa-tower-cell branch-icon"></i>
+                            <h4 class="fw-bold">Redes 5G </h4>
+                            <p class="small text-muted">
+                                No es solo tener señal. Es diseñar la autopista invisible que mueve al mundo. Implementa redes móviles de ultra-baja latencia para vehículos autónomos y streaming en tiempo real.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="branch-card h-100">
+                            <i class="fa-solid fa-satellite-dish branch-icon"></i>
+                            <h4 class="fw-bold">Satelital y RF</h4>
+                            <p class="small text-muted">
+                                El cielo ya no es el límite. Domina el espectro radioeléctrico y gestiona enlaces satelitales (como Starlink) para llevar internet a donde los cables no pueden llegar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="branch-card h-100">
+                            <i class="fa-solid fa-user-shield branch-icon"></i>
+                            <h4 class="fw-bold">Ciberseguridad</h4>
+                            <p class="small text-muted">
+                                Eres la primera línea de defensa. Aprende Hacking Ético y defensa de redes para blindar la infraestructura crítica de bancos y gobiernos contra ataques globales.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="branch-card h-100">
+                            <i class="fa-solid fa-microchip branch-icon"></i>
+                            <h4 class="fw-bold">IoT (Internet of Things)</h4>
+                            <p class="small text-muted">
+                                Dale "vida" a los objetos. Crea ecosistemas inteligentes (Smart Cities) donde sensores, industrias y hogares se conectan a la nube para automatizar el futuro.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="branch-card h-100">
+                            <i class="fa-solid fa-gears branch-icon"></i>
+                            <h4 class="fw-bold">Automatización & Virtualización</h4>
+                            <p class="small text-muted">
+                                Adiós a la configuración manual. Domina la "Infraestructura como Código" (IaC) usando Python y Ansible. Despliega entornos virtuales ágiles con Docker y Kubernetes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="branch-card h-100">
+                            <i class="fa-solid fa-terminal branch-icon"></i>
+                            <h4 class="fw-bold">SysAdmin & Monitoreo</h4>
+                            <p class="small text-muted">
+                                Gestiona el corazón de la data. Administra servidores Linux/Windows de misión crítica y crea centros de control (NOC) visualizando tráfico en tiempo real con Grafana y Zabbix.
+                            </p>
+                        </div>  
+                    </div>
+
+                </div> </div>
+        </section>
+
+        <section class="py-5 bg-white">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">¿Por qué elegir Telecomunicaciones?</h2>
+                    <p class=" text-center mb-3">Una de las carreras con mayor crecimiento y salario en el mundo.</p>
+                </div>
+
+                <div class="row g-4 text-center">
+                    
+                    <div class="col-md-4">
+                        <div class="p-4 rounded-4 h-100 border border-light shadow-sm hover-card">
+                            <div class="mb-3 text-success">
+                                <i class="fa-solid fa-money-bill-trend-up fa-3x"></i>
+                            </div>
+                            <h4 class="fw-bold">Alta Demanda Laboral</h4>
+                            <p class="text-muted small">
+                                Las empresas pelean por talento calificado. Desde bancos hasta proveedores de internet, todos necesitan expertos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="p-4 rounded-4 h-100 border border-light shadow-sm hover-card">
+                            <div class="mb-3 text-primary">
+                                <i class="fa-solid fa-earth-americas fa-3x"></i>
+                            </div>
+                            <h4 class="fw-bold">Trabajo Sin Fronteras</h4>
+                            <p class="text-muted small">
+                                Los protocolos de internet son universales. Tu conocimiento es un pasaporte para trabajar en China, Alemania o EE.UU.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="p-4 rounded-4 h-100 border border-light shadow-sm hover-card">
+                            <div class="mb-3 text-warning">
+                                <i class="fa-solid fa-rocket fa-3x"></i>
+                            </div>
+                            <h4 class="fw-bold">Estás en el Futuro</h4>
+                            <p class="text-muted small">
+                                Mientras otros estudian el pasado, tú construyes el mañana: Redes 5G, Smart Cities e Inteligencia Artificial.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">Certificaciones Internacionales</h2>
+                    <p class=" text-center mb-3">
+                        No solo te gradúas con un título, sales con certificaciones que valen oro.
+                    </p>
+                </div>
+
+                <div class="row g-4 justify-content-center">
+                    
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm text-center p-4 position-relative overflow-hidden hover-card">
+                            <div class="position-absolute top-0 start-0 w-100 bg-warning" style="height: 5px;"></div>
+                            <div class="mb-3 text-dark">
+                                <i class="fa-brands fa-linux fa-4x"></i>
+                            </div>
+                            <h5 class="fw-bold">Linux Essentials</h5>
+                            <span class="badge bg-warning text-dark mb-3">LPI Partner</span>
+                            <p class="small text-muted">
+                                Domina el sistema operativo de la nube. Aprende a gestionar la línea de comandos como un profesional.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm text-center p-4 position-relative overflow-hidden hover-card">
+                            <div class="position-absolute top-0 start-0 w-100" style="height: 5px; background-color: #00bceb;"></div>
+                            <div class="mb-3" style="color: #00bceb;">
+                                <i class="fa-solid fa-network-wired fa-4x"></i>
+                            </div>
+                            <h5 class="fw-bold">Cisco CCNA</h5>
+                            <span class="badge bg-info text-dark mb-3">Networking Academy</span>
+                            <p class="small text-muted">
+                                La certificación más reconocida en redes. Configura routers y switches empresariales desde cero.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm text-center p-4 position-relative overflow-hidden hover-card">
+                            <div class="position-absolute top-0 start-0 w-100" style="height: 5px; background-color: #005073;"></div>
+                            <div class="mb-3" style="color: #005073;">
+                                <i class="fa-solid fa-medal fa-4x"></i>
+                            </div>
+                            <h5 class="fw-bold">Cisco CCNP</h5>
+                            <span class="badge bg-dark mb-3">Nivel Profesional</span>
+                            <p class="small text-muted">
+                                Especialízate en enrutamiento avanzado y diseño de arquitecturas corporativas complejas.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <section class="py-5 bg-light"> <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Tu Futuro Profesional</h2>
+                        <p class="text-center mb-3">
+                            <span class="fs-5 me-2"></span> 
+                            <strong>El mercado laboral te está esperando en estas posiciones clave:</strong> 
+                        </p>
+            </div>
+
+            <div class="row g-4">
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm p-4 text-center job-card">
+                        <div class="mb-3 text-primary">
+                            <i class="fa-solid fa-cloud-arrow-up fa-3x"></i>
+                        </div>
+                        <h5 class="fw-bold">Arquitecto Cloud</h5>
+                        <p class="small text-muted mt-2">
+                            No solo uses la nube, constrúyela. Diseña infraestructuras escalables para gigantes como AWS, Google o Azure y lidera la migración digital.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm p-4 text-center job-card">
+                        <div class="mb-3 text-danger"> <i class="fa-solid fa-user-shield fa-3x"></i>
+                        </div>
+                        <h5 class="fw-bold">Ingeniero de Ciberseguridad</h5>
+                        <p class="small text-muted mt-2">
+                            El guardián digital. Ejecuta hacking ético, pentesting y blinda las redes de bancos y gobiernos contra amenazas globales.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm p-4 text-center job-card">
+                        <div class="mb-3 text-success"> <i class="fa-solid fa-user-tie fa-3x"></i>
+                        </div>
+                        <h5 class="fw-bold">Gerente de Tecnología (CTO)</h5>
+                        <p class="small text-muted mt-2">
+                            Visión estratégica. Lidera equipos de ingeniería y toma las decisiones tecnológicas que definen el rumbo de corporaciones multinacionales.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm p-4 text-center job-card">
+                        <div class="mb-3 text-info"> <i class="fa-solid fa-satellite fa-3x"></i>
+                        </div>
+                        <h5 class="fw-bold">Ingeniero RF & Satélites</h5>
+                        <p class="small text-muted mt-2">
+                            Rompe fronteras. Trabaja con innovadores como Starlink o OneWeb diseñando enlaces que conectan los lugares más remotos del planeta.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <main id="view-lab" class="page-section" style="display: none;">
+        
+        <header class="hero-lab">
+            <div class="container">
+                <h1 class="display-4 fw-bold text-white"><span style="color:var(--galileo-light)">TELECOM</span> LAB</h1>
+                <p class="text-center lead text-light opacity-100">Donde la teoría se rompe y se reconstruye en la práctica. Solo en Universidad Galileo.</p>
+            </div>
+        </header>
+
+        <section class="py-5 container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 order-lg-2">
+                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded-4 shadow-lg border-start border-5 border-primary" alt="Lab">
+                </div>
+                <div class="col-lg-7 order-lg-1">
+                    <h2 class="fw-bold mb-4" style="color: #333;">¿Qué es el Telecom Lab?</h2>
+                    <p class="text-secondary fs-5">
+                        El <strong>Telecom Lab</strong> es un espacio dedicado a la investigación y a la creaión de proyectos que proyectos que buscan dar a conocer al mundo que son las telecomunicaciones, el desarrollo que estas representan y la importancia de poder preparar profesionales en esta área. 
+                    </p>
+                    <p class="text-secondary">
+                        Aquí vienes a realizar tus practicas de laboratorios como: conectar cables, configurar routers y realizar pruebas de campo. Es el corazón práctico de la carrera, junto con el labotarioto de Cisco. 
+                    </p>
+                    <div class="d-flex gap-3 mt-4">
+                        <div class="text-center align-items-center">
+                            <i class="fa-solid fa-server fa-2x text-primary me-2"></i>
+                            <span class="fw-bold small">Monthly activities</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fa-solid fa-wave-square fa-2x text-primary me-2"></i>
+                            <span class="fw-bold small">Wireless Labs</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fa-solid fa-robot fa-2x text-primary me-2"></i>
+                            <span class="fw-bold small">Cibersecurity Zone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Testimonios y Vlogs</h2>
+                    <p class="text-center text-muted">Mira lo que hacen nuestros estudiantes en el día a día en la Universidad Galileo.</p>
+                </div>
+
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-3 col-6">
+                        <div class="media-card">
+                            <div class="iframe-container">
+                                <iframe src="https://www.youtube.com/embed/fojgKVeUeKU" title="Student Life" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-3 bg-white">
+                                <h6 class="fw-bold mb-0">Práctica de Fibra 🧵</h6>
+                                <small class="text-muted">Laboratorio 1</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-6">
+                        <div class="media-card">
+                            <div class="iframe-container">
+                                <iframe src="https://www.youtube.com/embed/fojgKVeUeKU" title="Antenas" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-3 bg-white">
+                                <h6 class="fw-bold mb-0">Montaje de Antenas 📡</h6>
+                                <small class="text-muted">Salida de Campo</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="media-card h-100">
+                            <div class="iframe-container youtube h-100">
+                                <iframe src="https://www.youtube.com/embed/osASSwo1JXE?si=a0FbsY5oxFJVC-vS&amp;controls=0" title="Project Demo" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-3 bg-white">
+                                <span class="project-badge mb-2 d-inline-block">Proyecto Final</span>
+                                <h5 class="fw-bold">Demo: Smart City Galileo</h5>
+                                <p class="small text-muted mb-0">Presentación del proyecto de automatización urbana desarrollado por alumnos de 4to año.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Eminencias de la Carrera</h2>
+                <p class="text-center text-muted">Descubre qué representa la ingeniería para nuestros catedráticos.</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 text-center testimonial-card">
+                        <div class="mx-auto mb-3" style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Estudiante" class="img-fluid object-fit-cover w-100 h-100">
+                        </div>
+                        
+                        <div class="card-body p-0">
+                            <i class="fa-solid fa-quote-left text-primary fs-3 mb-3"></i>
+                            <p class="fst-italic text-muted">
+                                "Para mí, Telecomunicaciones es **libertad**. Es saber que puedo trabajar desde una antena en la montaña o configurando la nube desde mi casa. No hay límites."
+                            </p>
+                            
+                            <h5 class="fw-bold mt-4 mb-1">PhD. Alberto Marroquín</h5>
+                            <p class="text-center small text-primary fw-bold">Director de la carrera en Ingeniría en Telecomunicaciones - Universidad Galileo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 text-center testimonial-card">
+                        <div class="mx-auto mb-3" style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Estudiante" class="img-fluid object-fit-cover w-100 h-100">
+                        </div>
+                        
+                        <div class="card-body p-0">
+                            <i class="fa-solid fa-quote-left text-primary fs-3 mb-3"></i>
+                            <p class="fst-italic text-muted">
+                                "Es la **conexión humana**. Detrás de cada mensaje de WhatsApp o videollamada hay una red compleja que nosotros construimos. Me encanta sentir que uno al mundo."
+                            </p>
+                            
+                            <h5 class="fw-bold mt-4 mb-1"> MsC. Karen Sanchéz</h5>
+                            <p class="text-center small text-primary fw-bold">Directora del Telecom Lab - Univesidad Galileo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 text-center testimonial-card">
+                        <div class="mx-auto mb-3" style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
+                            <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Estudiante" class="img-fluid object-fit-cover w-100 h-100">
+                        </div>
+                        
+                        <div class="card-body p-0">
+                            <i class="fa-solid fa-quote-left text-primary fs-3 mb-3"></i>
+                            <p class="fst-italic text-muted">
+                                "Telecomunicaciones es como se envia y recibe la informacion a distancia atraves de diferentes tecnologias (cableada: cobre o fibra optica, inalambrica: satelital, wifi...) Que permite tener servicios como telefonía, internet, geolocalizcion, IoT, etc."
+                            </p>
+                            
+                            <h5 class="fw-bold mt-4 mb-1">MsC. Oscar Lira</h5>
+                            <p class="text-center small text-primary fw-bold">Investigador RLICT - Univerisdad Galileo</p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+        <section class="py-5 container">
+            <h2 class="fw-bold mb-4">Proyectos Recientes</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Project">
+                        <div class="card-body">
+                            <h5 class="fw-bold">Bootcamps</h5>
+                            <p class="card-text text-muted small">Realizamos bootcamps especialiados en estudiantes de último año para dar a conocer los temas principales de telecomunicaciones. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1520869562399-e772f042f422?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Project">
+                        <div class="card-body">
+                            <h5 class="fw-bold">Demostraciones de ciberseguridad</h5>
+                            <p class="card-text text-muted small">Tenemos diferentes gadgets como Flipper Zero, Rubber Ducky, Minino (Electronic Cats).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Project">
+                        <div class="card-body">
+                            <h5 class="fw-bold">Reducción de la brecha digital en el interior del país. </h5>
+                            <p class="card-text text-muted small">En este 2026 se estan implementando un proyecto nuevo el cual consiste en construir una estacion base para telefonía e Internet en una comunidad en el interior de país.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+    <div class="container text-center py-4">
+        
+        <div class="d-flex justify-content-center align-items-center gap-4 mb-4">
+            <a href="https://www.tiktok.com/@telecomlab_ug" target="_blank" class="social-icon tiktok">
+                <i class="fa-brands fa-tiktok fa-2x"></i>
+            </a>
+            <a href="https://www.instagram.com/ugalileo_edu" target="_blank" class="social-icon instagram">
+                <i class="fa-brands fa-instagram fa-2x"></i>
+            </a>
+            <a href="https://www.youtube.com/ugalileogt" target="_blank" class="social-icon youtube">
+                <i class="fa-brands fa-youtube fa-2x"></i>
+            </a>
+        </div>
+
+        <hr class="border-secondary opacity-50 mx-auto" style="width: 50%;">
+
+        <div class="mt-3">
+            <p class="text-center text-white-75 mb-0">
+                &copy; 2026 Universidad Galileo. <br class="d-md-none"> Todos los derechos reservados.
+            </p>
+            <p class="text-center text-white-75 mb-0">
+                Ingeniería en Telecomunicaciones - FISICC
+            </p>
+        </div>
+
     </div>
-  </div>
 
-  <div class="wrap">
-    <section class="hero">
-      <div class="heroGrid">
-        <div>
-          <div class="kicker">Guatemala • Telecomunicaciones</div>
-          <h1>Estudiá Telecom y construí el futuro: redes, 5G, fibra y ciberseguridad.</h1>
-          <p class="lead">
-            Este sitio es una guía rápida con recursos y “qué vas a aprender” si te interesa la carrera.
-            Ideal si te gusta la tecnología, resolver problemas y trabajar con infraestructura real.
-          </p>
-
-          <div class="pillRow">
-            <span class="pill">📡 Redes & Routing</span>
-            <span class="pill">🧵 Fibra óptica</span>
-            <span class="pill">📶 4G/5G & RF</span>
-            <span class="pill">🛡️ Seguridad</span>
-            <span class="pill">🧪 Labs</span>
-          </div>
-
-          <div class="pillRow" style="margin-top:14px">
-            <a class="btn primary" id="cta" href="#contacto">Solicitar información</a>
-            <a class="btn" href="https://20cristian.github.io/Lab-Tele/" target="_blank" rel="noreferrer">Ver sitio en vivo</a>
-            <a class="btn" href="https://github.com/20cristian/Lab-Tele" target="_blank" rel="noreferrer">Ver repo</a>
-          </div>
-
-          <div class="stats">
-            <div class="stat"><b>Aprendés haciendo</b><span>Laboratorios + casos reales</span></div>
-            <div class="stat"><b>Perfil demandado</b><span>Redes, ISP, empresas, seguridad</span></div>
-            <div class="stat"><b>Base sólida</b><span>Para certs y especialización</span></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3 style="margin:0 0 8px">🚀 Mini ruta (si estás empezando)</h3>
-          <ol style="margin:0; padding-left:18px; color:var(--muted)">
-            <li>Conceptos de redes (OSI/TCP-IP)</li>
-            <li>Switching & VLANs</li>
-            <li>Routing (OSPF/BGP básico)</li>
-            <li>Fibra, microondas, RF</li>
-            <li>VPN/IPSec + seguridad</li>
-          </ol>
-          <span class="tag">Tip: empezá con 30 min diarios</span>
-
-          <div style="margin-top:14px" class="small">
-            Tu página está publicada en <code>GitHub Pages</code> con HTTPS.
-            Actualizás con commits y se refleja en minutos.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="por-que">
-      <h2>¿Por qué estudiar Telecomunicaciones?</h2>
-      <div class="cards3">
-        <div class="card">
-          <h3 style="margin:0 0 6px">Impacto real</h3>
-          <p class="small">Internet, telefonía, 5G, fibra y conectividad empresarial: todo depende de Telecom.</p>
-        </div>
-        <div class="card">
-          <h3 style="margin:0 0 6px">Mezcla perfecta</h3>
-          <p class="small">Hardware + software + redes + seguridad. No te aburrís: siempre hay algo nuevo.</p>
-        </div>
-        <div class="card">
-          <h3 style="margin:0 0 6px">Escala y carrera</h3>
-          <p class="small">Podés crecer hacia arquitectura de redes, ciberseguridad, cloud networking o ISP.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="rutas">
-      <h2>Rutas que podés seguir en Telecom</h2>
-      <div class="two">
-        <div class="card">
-          <h3 style="margin:0 0 6px">📡 Redes & Infraestructura</h3>
-          <ul>
-            <li>Switching (VLAN, STP), routing (OSPF/BGP), QoS</li>
-            <li>WAN (MPLS/VPN), monitoreo (SNMP/NMS)</li>
-            <li>Diseño y documentación de redes</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3 style="margin:0 0 6px">📶 RF, Microondas y 5G</h3>
-          <ul>
-            <li>Fundamentos de radiofrecuencia y propagación</li>
-            <li>Enlaces microondas, antenas, mediciones</li>
-            <li>Conceptos de redes móviles (4G/5G)</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3 style="margin:0 0 6px">🧵 Fibra óptica</h3>
-          <ul>
-            <li>FTTx, ODN, presupuesto óptico</li>
-            <li>Empalme, conectores, pruebas (conceptual)</li>
-            <li>Diseño de rutas y resiliencia</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3 style="margin:0 0 6px">🛡️ Ciberseguridad en redes</h3>
-          <ul>
-            <li>Hardening, segmentación, VPN/IPSec</li>
-            <li>Logs, monitoreo, respuesta a incidentes (básico)</li>
-            <li>Buenas prácticas para entornos empresariales</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="salidas">
-      <h2>Salida laboral típica</h2>
-      <div class="cards3">
-        <div class="card">
-          <h3 style="margin:0 0 6px">Network / NOC</h3>
-          <p class="small">Operación, monitoreo, troubleshooting, cambios controlados.</p>
-        </div>
-        <div class="card">
-          <h3 style="margin:0 0 6px">Ingeniería ISP / Enterprise</h3>
-          <p class="small">Diseño WAN, enlaces, proyectos, implementación y optimización.</p>
-        </div>
-        <div class="card">
-          <h3 style="margin:0 0 6px">Seguridad de redes</h3>
-          <p class="small">Firewall, VPN, segmentación, hardening, SOC/NOC híbrido.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section faq" id="faq">
-      <h2>FAQ rápido</h2>
-
-      <details>
-        <summary>¿Necesito saber programar para entrar?</summary>
-        <div class="small" style="margin-top:8px;color:var(--muted)">
-          Ayuda, pero no es obligatorio. Lo importante es tener lógica, disciplina y ganas de aprender.
-        </div>
-      </details>
-
-      <details>
-        <summary>¿Puedo hacer labs en mi compu?</summary>
-        <div class="small" style="margin-top:8px;color:var(--muted)">
-          Sí: GNS3/EVE-NG, máquinas virtuales, Linux y herramientas de redes te dejan practicar desde casa.
-        </div>
-      </details>
-
-      <details>
-        <summary>¿Este sitio ya está público y con HTTPS?</summary>
-        <div class="small" style="margin-top:8px;color:var(--muted)">
-          Sí. GitHub Pages publica tu web para cualquiera y con <code>https</code> automático (certificado incluido).
-        </div>
-      </details>
-    </section>
-
-    <section class="cta" id="contacto">
-      <div>
-        <h2 style="margin:0 0 6px">¿Te interesa estudiar Telecom en Guatemala?</h2>
-        <p>Escribime y te paso ruta de estudio + recursos + cómo prepararte para el primer semestre.</p>
-        <div class="small">Tip: cambiá el link del botón por el formulario/WhatsApp/Admisiones cuando lo tengás.</div>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <!-- Cambiá estos links por los reales -->
-        <a class="btn primary" href="#" onclick="alert('Aquí ponés el link real de Admisiones/Formulario/WhatsApp'); return false;">Contactar / Admisiones</a>
-        <a class="btn" href="mailto:tu-correo@ejemplo.com">Correo</a>
-      </div>
-    </section>
-
-    <div class="footer">
-      <div>Hecho con GitHub Pages • Lab Tele</div>
-      <div class="small">Nota: Este sitio es informativo. “Universidad Galileo” se menciona solo como referencia (no uso de logos oficiales).</div>
     </div>
-  </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function switchTab(tabName) {
+            // Referencias a las secciones
+            const viewCarrera = document.getElementById('view-carrera');
+            const viewLab = document.getElementById('view-lab');
+            
+            // Referencias a los botones
+            const btnCarrera = document.getElementById('btn-carrera');
+            const btnLab = document.getElementById('btn-lab');
+
+            if(tabName === 'carrera') {
+                // Mostrar Carrera, Ocultar Lab
+                viewCarrera.style.display = 'block';
+                viewLab.style.display = 'none';
+                
+                // Actualizar clases activas
+                btnCarrera.classList.add('active');
+                btnLab.classList.remove('active');
+                
+                // Scroll arriba
+                window.scrollTo(0, 0);
+
+            } else if (tabName === 'lab') {
+                // Mostrar Lab, Ocultar Carrera
+                viewCarrera.style.display = 'none';
+                viewLab.style.display = 'block';
+                
+                // Actualizar clases activas
+                btnLab.classList.add('active');
+                btnCarrera.classList.remove('active');
+                
+                // Scroll arriba
+                window.scrollTo(0, 0);
+            }
+        }
+    </script>
 </body>
 </html>
